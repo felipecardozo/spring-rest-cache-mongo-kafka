@@ -59,5 +59,18 @@ public class JobService {
 		} );
 		return "done";
 	}
+	
+	public JobPosition createPosition(final String type, final String company, final String url) {
+		JobPosition newJob = new JobPosition();
+		newJob.setType(type);
+		newJob.setCompany(company);
+		newJob.setUrl(url);
+		JobPosition saved = jobPositionRepository.save(newJob);
+		return saved;
+	}
+
+	public List<JobPosition> retrieveAllJobPositions() {
+		return jobPositionRepository.findAll();
+	}
 
 }

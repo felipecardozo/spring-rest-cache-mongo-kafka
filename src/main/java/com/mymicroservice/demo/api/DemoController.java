@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mymicroservice.demo.domain.JobPosition;
@@ -26,6 +28,11 @@ public class DemoController {
 		return jobService.retrieveJobPositions(keyWord);
 	}
 	
+	@GetMapping("/positions/all")
+	public List<JobPosition> getAllPositions(){
+		return jobService.retrieveAllJobPositions();
+	}
+	
 	/** http://localhost:8080/save/java **/
 	@GetMapping("/save/{keyWord}")
 	public List<JobPosition> savePositions(@PathVariable String keyWord) {
@@ -36,6 +43,11 @@ public class DemoController {
 	@GetMapping("/produce")
 	public String sendKafkaPositions() {
 		return jobService.produceKafkaMessages();
-	} 
+	}
+	
+	@PostMapping("/add/job")
+	public JobPosition createPosition(@RequestBody JobPosition job){
+		return jobService.createPosition(job.getType(), job.getCompany(), job.getUrl());
+	}
 
 }
