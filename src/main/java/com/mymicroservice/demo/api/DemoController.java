@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,7 +48,12 @@ public class DemoController {
 	
 	@PostMapping("/add/job")
 	public JobPosition createPosition(@RequestBody JobPosition job){
-		return jobService.createPosition(job.getType(), job.getCompany(), job.getUrl());
+		return jobService.createPosition(job);
+	}
+	
+	@PutMapping("/updated/job")
+	public JobPosition updatePosition( @RequestBody JobPosition job ) {
+		return null;
 	}
 
 }

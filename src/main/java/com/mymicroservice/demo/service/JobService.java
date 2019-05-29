@@ -60,12 +60,8 @@ public class JobService {
 		return "done";
 	}
 	
-	public JobPosition createPosition(final String type, final String company, final String url) {
-		JobPosition newJob = new JobPosition();
-		newJob.setType(type);
-		newJob.setCompany(company);
-		newJob.setUrl(url);
-		JobPosition saved = jobPositionRepository.save(newJob);
+	public JobPosition createPosition(JobPosition jobPosition) {
+		JobPosition saved = jobPositionRepository.save(jobPosition);
 		return saved;
 	}
 
